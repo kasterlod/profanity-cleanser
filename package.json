@@ -15,7 +15,6 @@
     "module"
   ],
   "author": "Shweta Sabne <shwetasabne@gmail.com> (http://www.shwetasabne.com)",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/shwetasabne/profanity-cleanser/issues"
   },
@@ -26,5 +25,11 @@
   },
   "dependencies": {
     "lodash": "^4.6.1"
-  }
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/shwetasabne/profanity-cleanser/blob/master/LICENSE-MIT"
+    }
+  ],
 }
