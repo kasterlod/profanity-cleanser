@@ -122,10 +122,12 @@ module.exports = {
         {
             key = dictionary[j];
             var index = lowerStr.indexOf(key);
+            // This check seems a bit wasteful, TODO: revisit
             if( index != -1)
             {
                 keyReplacement = replacement[repPatt.pattern](key, repPatt.word);
-                origString = origString.substr(0, index) + keyReplacement + origString.substr(index + key.length);
+                var regex = new RegExp('\\b'+ key + '\\b', 'g');
+                origString = origString.replace(regex, keyReplacement); 
                 lowerStr = origString.toLowerCase(); 
             }
         } 

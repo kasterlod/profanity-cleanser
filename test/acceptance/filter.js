@@ -86,4 +86,22 @@ describe('#replace test', function(){
         assert.equal(gotOutput, expectedOutput, 'Verified that obtained output matches expected one')    
     });
 
+    it('Should replace only whole word occurance of bad word and not partial occurance', function(){
+
+        filter.setLocale();
+        var inputString = 'This is an assimilation borg, my ass!';
+        var gotOutput = filter.replace(inputString);
+        var expectedOutput = 'This is an assimilation borg, my ***!';
+        assert.equal(gotOutput, expectedOutput, 'Verified that obtained output matches expected one')    
+    });
+
+    it('Should replace all the bad words if given bad word occurs more than once in the string', function(){
+
+        filter.setLocale();
+        var inputString = 'This is an assimilation borg, my ass! String also contains vagina,ass,parrot. Will you replace ass, gas ? But not ass123';
+        var gotOutput = filter.replace(inputString, 'word', 'BOOBOO');
+        var expectedOutput = 'This is an assimilation borg, my BOOBOO! String also contains BOOBOO,BOOBOO,parrot. Will you replace BOOBOO, gas ? But not ass123';
+         assert.equal(gotOutput, expectedOutput, 'Verified that obtained output matches expected one')    
+
+    });
 });
