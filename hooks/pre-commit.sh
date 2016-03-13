@@ -1,5 +1,14 @@
-TEST_OUTPUT=$(npm test)
+#!/bin/sh
 
-[ $TEST_OUTPUT -ne 0 ] && exit 1
+echo "Running tests"
+npm test
 
-exit 0
+OUTPUT=$?
+
+if [ $OUTPUT != 0 ]
+then
+    echo "Please fix tests before proceeding"
+    exit 1
+else
+    exit 0
+fi
