@@ -21,11 +21,58 @@ The module uses the profane words curated and maintained by [Shutterstock Projec
 
 ## methods
 
+*Warning : Examples may contain offensive text*
+
+### cleanser.replace(inputString<string>, replacementPattern<script>, replacementWord<script>)
+
+Replaces the bad words in the given inputString with the replacement pattern and replacement word passed to the function. For more usage examples please see ```javascript example.js``` 
+
+#### Default replacement
+
+```javascript
+var cleanser = require('profanity-cleanser');
+
+// Sets to default locale of en-base
+cleanser.setLocale(); 
+
+var inputString = "Your ass is shit"
+
+// output becomes "You *** is ****"
+var output = cleanser.replace(inputString);
+```
+
+#### Replacement with word of your choice
+
+```javascript
+var cleanser = require('profanity-cleanser');
+
+// Sets to default locale of en-base
+cleanser.setLocale(); 
+
+var inputString = "Your ass is shit"
+
+// output becomes "You FOOBAR is FOOBAR"
+var output = cleanser.replace(inputString, 'word', 'FOOBAR');
+```
+
+#### Replacement with grawlix (i.e. random special characters)
+```javascript
+var cleanser = require('profanity-cleanser');
+
+// Sets to default locale of en-base
+cleanser.setLocale(); 
+
+var inputString = "Your ass is shit"
+
+// output becomes "You !#$ is &^!@"
+var output = cleanser.replace(inputString, 'grawlix');
+```
+
 ### cleanser.setLocale([string])
 
 Validates and sets the locale for profanity check based on the array passed. Acceptable locales map to the one's supported ./seeds directory. Setting locale implies using the badwords in the corresponding ./seeds/<locale> file for profanity checking.
 
-```
+```javascript
 var cleanser = require('profanity-cleanser');
 
 // Sets to default locale of en-base
@@ -39,7 +86,7 @@ cleanser.setLocale(['hi', 'es', 'ja']);
 
 Returns the currenly set locales.
 
-```
+```javascript
 var cleanser = require('profanity-cleanser');
 
 //Set locale to hindi spanish and japanese
@@ -49,6 +96,52 @@ var output = cleanser.getLocale();
 
 // Outputs hi,es,ja
 console.log(output.toString())
+```
+
+### cleanser.addWords([string])
+
+This method allows you to add more words of your choice to the dictionary. 
+
+```javascript
+var cleanser = require('profanity-cleanser');
+
+cleanser.setLocale()
+
+var output = cleanser.addWords(["foo", "bar"]);
+
+var input = "Your ass foo is as shit as bar"
+
+// Output : "Your *** *** is as **** as ***"
+var output = cleanser.replace(input)
+```
+
+### cleanser.removeWords(string)
+
+This method allows you to remove word from the dictionary. 
+
+```javascript
+var cleanser = require('profanity-cleanser');
+
+cleanser.setLocale()
+
+var output = cleanser.removeWords("ass");
+
+var input = "Your ass is shit"
+
+// Output : "Your ass is as ****"
+var output = cleanser.replace(input)
+```
+
+### cleanser.getDictionary()
+
+This method returns a list of all the words currently in the profane words dictionary. Can be helpful in debugging.
+
+```javascript
+var cleanser = require('profanity-cleanser');
+
+cleanser.setLocale()
+
+var output = cleanser.getDictionary();
 ```
 
 ## References
