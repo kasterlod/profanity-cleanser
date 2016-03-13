@@ -7,6 +7,35 @@ var meta = require('./lib/metadata.js');
 var dictionary = [];
 var locale = [];
 
+var validPatterns = ['character', 'grawlix', 'word'];
+var grawlixChars = ['!','@','#','$','%','&','*'];
+
+var replacement = {
+    'character' : function(key, pat){
+        var keyRepm = _.repeat(pat, key.length); 
+        return keyRepm;
+    },
+
+    'word': function(key, pat){
+        return pat;
+    },
+    
+    'grawlix' : function(key){
+        var keyReplacement = '',
+          grawlixLen = grawlixChars.length,
+          wordLen = key.length,
+          rand,
+          i;
+
+        for (i = 0; i < wordLen; i++) {
+          rand = Math.floor(Math.random() * grawlixLen);
+          keyReplacement += grawlixChars[rand];
+        }
+
+        return keyReplacement;
+    }
+
+};
 
 module.exports = {
 
@@ -63,8 +92,45 @@ module.exports = {
         }
     },
 
+    /* This method shows the supported replacement patterns */
+    showReplacementPatterns: function(){
+        return validPatterns;        
+    },
+
     /* This method replaces the bad words in the string with your replacement characeter */
-    replace: function(origString, replacementPattern){
+    replace: function(origString, replacementPattern, replacementWord){
+
+        var key, keyReplacement;
+
+        // Validate that dictionary is populated. If not throw an error
+        if(dictionary.length <= 0)
+        {
+            throw "Dictionary is not populated. Perhaps you forgot to call setLocale ?";
+        }
+        
+        // Validate the replacementPattern
+        var input = {};
+        input.replacementPattern = replacementPattern;
+        input.replacementWord = replacementWord;
+        input.validPatterns = validPatterns;
+        var repPatt = sanitizer.sanitizeReplacementPattern(input);
+
+
+        // Parse the string to see if any word is in the dictionary and if they match generate replacement string
+        var lowerStr = origString.toLowerCase();
+        for (var j=0; j < dictionary.length; j++)
+        {
+            key = dictionary[j];
+            var index = lowerStr.indexOf(key);
+            if( index != -1)
+            {
+                keyReplacement = replacement[repPatt.pattern](key, repPatt.word);
+                origString = origString.substr(0, index) + keyReplacement + origString.substr(index + key.length);
+                lowerStr = origString.toLowerCase(); 
+            }
+        } 
+        
+        return origString; 
 
     },
     

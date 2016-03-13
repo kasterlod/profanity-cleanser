@@ -1,11 +1,11 @@
 var assert = require('chai').assert;
-var filter = require('../filter.js');
+var filter = require('../../filter.js');
 
-var en_words_list = require('../seed/en-base.js');
+var en_words_list = require('../../seed/en-base.js');
 var en_words = en_words_list();
-var fr_words_list = require('../seed/fr.js');
+var fr_words_list = require('../../seed/fr.js');
 var fr_words = fr_words_list();
-var it_words_list = require('../seed/it.js');
+var it_words_list = require('../../seed/it.js');
 var it_words = it_words_list();
 
 describe('#setLocale tests', function(){
@@ -150,3 +150,12 @@ describe('#removeWords test', function(){
     });
 
 });
+
+describe('#showReplacementPatterns', function(){
+
+    it('Should sow replacement patterns', function(){
+        var repPat = filter.showReplacementPatterns();
+        assert.deepEqual(repPat, ['character', 'grawlix', 'word'], 'Verified that showReplacementPatterns works as expected'); 
+    });
+});
+
