@@ -12,7 +12,6 @@ describe('#replace test', function(){
         var dict = filter.getDictionary();
         var inputString = 'This is a bad string my ass. Also this string contains dick and vagina and bastard. But this is just a test. Do not mind fuck';
         var gotOutput = filter.replace(inputString);
-        console.log(gotOutput);
         var expectedOutput = 'This is a bad string my ***. Also this string contains **** and ****** and *******. But this is just a test. Do not mind ****'
         assert.equal(gotOutput, expectedOutput, 'Verified that obtained output matches expected one')    
     });
@@ -68,4 +67,23 @@ describe('#replace test', function(){
         var expectedOutput = 'This is a bad string my #@#@#@. Also this string contains #@#@#@#@ and #@#@#@#@#@#@ and #@#@#@#@#@#@#@. But this is just a test. Do not mind #@#@#@#@'
         assert.equal(gotOutput, expectedOutput, 'Verified that obtained output matches expected one')    
     });
+
+    it('Should replace bad words if we can add words and give it an array of words', function(){
+        filter.setLocale();
+        filter.addWords(["username", "password"]);
+        var inputString = 'This is a bad string my ass. My username is badword and password is goodword. Also this string contains dick and vagina and bastard. But this is just a test. Do not mind fuck';
+        var expectedOutput = 'This is a bad string my ***. My ******** is badword and ******** is goodword. Also this string contains **** and ****** and *******. But this is just a test. Do not mind ****';
+        var gotOutput = filter.replace(inputString);
+        assert.equal(gotOutput, expectedOutput, 'Verified that obtained output matches expected one')    
+    });
+    
+    it('Should not replace bad words if we can remove word', function(){
+        filter.setLocale();
+        filter.removeWords("ass");
+        var inputString = 'This is a bad string my ass. Also this string contains dick and vagina and bastard. But this is just a test. Do not mind fuck';
+        var gotOutput = filter.replace(inputString);
+        var expectedOutput = 'This is a bad string my ass. Also this string contains **** and ****** and *******. But this is just a test. Do not mind ****'
+        assert.equal(gotOutput, expectedOutput, 'Verified that obtained output matches expected one')    
+    });
+
 });
