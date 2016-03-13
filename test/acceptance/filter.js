@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var filter = require('../../filter.js');
 
-describe.only('#replace test', function(){
+describe('#replace test', function(){
 
     it('Should throw an error when setLocale is not called', function(){
         assert.throws(function(){filter.replace('this is ass')}, "Dictionary is not populated. Perhaps you forgot to call setLocale ?")
@@ -12,6 +12,7 @@ describe.only('#replace test', function(){
         var dict = filter.getDictionary();
         var inputString = 'This is a bad string my ass. Also this string contains dick and vagina and bastard. But this is just a test. Do not mind fuck';
         var gotOutput = filter.replace(inputString);
+        console.log(gotOutput);
         var expectedOutput = 'This is a bad string my ***. Also this string contains **** and ****** and *******. But this is just a test. Do not mind ****'
         assert.equal(gotOutput, expectedOutput, 'Verified that obtained output matches expected one')    
     });

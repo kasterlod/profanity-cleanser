@@ -30,7 +30,7 @@ module.exports=function(){
         "bareback",
         "barely legal",
         "barenaked",
-        "bastardo",
+        "bastard",
         "bastinado",
         "bbw",
         "bdsm",

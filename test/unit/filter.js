@@ -40,7 +40,7 @@ describe('#setLocale tests', function(){
     });
     
     it('Should throw an error when unsupported locale is passed', function(){
-        assert.throws(function(){filter.setLocale(['fr', 'xoxo'])}, "Invalid locale supplied to setLocale function. Please supply valid locales including : en-base,en-uk,en-us,es,fi,fr,it")
+        assert.throws(function(){filter.setLocale(['fr', 'xoxo'])}, "Invalid locale supplied to setLocale function. Please supply valid locales including : ar,cs,da,de,en-base,en-uk,en-us,eo,es,fa,fi,fr,hi,hu,it,ja,ko,nl,no,pl,pt,ru,sv,th,tlh,tr,zh")
     });
 });
 
@@ -155,7 +155,7 @@ describe('#showReplacementPatterns', function(){
 
     it('Should sow replacement patterns', function(){
         var repPat = filter.showReplacementPatterns();
-        assert.deepEqual(repPat, ['character', 'grawlix', 'word'], 'Verified that showReplacementPatterns works as expected'); 
+        assert.deepEqual(repPat, ['character', 'grawlix', 'word'], 'Verified that showReplacementPatterns works as expected');
     });
 });
 
