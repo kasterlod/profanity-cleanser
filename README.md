@@ -23,7 +23,7 @@ The module uses the profane words curated and maintained by [Shutterstock Projec
 
 *Warning : Examples may contain offensive text*
 
-### cleanser.replace(inputString<string>, replacementPattern<script>, replacementWord<script>)
+### cleanser.replace(inputString<string>, replacementPattern<string>, replacementWord<string>)
 
 Replaces the bad words in the given inputString with the replacement pattern and replacement word passed to the function. For more usage examples please see ```javascript example.js``` 
 
