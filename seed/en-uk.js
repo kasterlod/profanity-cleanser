@@ -57,7 +57,6 @@ module.exports=function(){
         'gypo',
         'hitler',
         'hooker',
-        'hore',
         'horny',
         'jesussucks',
         'jizzum',
